@@ -1,23 +1,36 @@
 package dev.zanex.itlbruchrechner;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.net.URL;
 
-public class HelloApplication extends Application {
+public class MainApplication extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
+    public void start(Stage primaryStage) {
+        WebView webView = new WebView();
+        URL url = getClass().getResource("/web/index.html");
+
+        if (url != null) {
+            webView.getEngine().load(url.toExternalForm());
+        } else {
+            System.out.println("Error: Vue.js index.html not found!");
+        }
+
+        StackPane root = new StackPane(webView);
+        Scene scene = new Scene(root, 500, 300);
+
+        primaryStage.setTitle("Bruchrechner");
+        primaryStage.setAlwaysOnTop(true);
+        primaryStage.setResizable(false);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }

@@ -16,4 +16,8 @@ echo "Build and move completed successfully. Running application..."
 
 # Compile and start
 cd .. || { echo "Failed to navigate to ui directory"; exit 1; }
-mvn clean javafx:build
+mvn clean javafx:run
+
+
+# Keep the script running so I can quit it inside IntelliJ
+tail -f /dev/null
