@@ -6,6 +6,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 
 public class MainApplication extends Application {
@@ -30,7 +31,9 @@ public class MainApplication extends Application {
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        SimpleHttpServer server = new SimpleHttpServer();
+        server.startServer();
         launch(args);
     }
 

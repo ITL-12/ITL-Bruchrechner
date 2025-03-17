@@ -1,8 +1,8 @@
 <template>
   <div class="fraction">
-    <NumInputComponent />
+    <NumInputComponent id="num" @input-change="onInputChange('num', $event)" />
     <div class="fraction--separator"></div>
-    <NumInputComponent />
+    <NumInputComponent id="dec" @input-change="onInputChange('dec', $event)" />
   </div>
 </template>
 
@@ -11,8 +11,13 @@ import NumInputComponent from "@/components/NumInputComponent.vue";
 
 export default {
   name: "FractionComponent",
-  components: {NumInputComponent}
-}
+  components: { NumInputComponent },
+  methods: {
+    onInputChange(type, value) {
+      this.$emit('fraction-change', { type, value });
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -21,13 +26,4 @@ export default {
   align-items: center;
   flex-direction: column;
 }
-
-.fraction--separator {
-  height: 2px;
-  background-color: white;
-  width: 100%;
-  margin: 10px 0;
-  border-radius: 15px;
-}
-
 </style>

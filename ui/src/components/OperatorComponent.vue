@@ -51,6 +51,7 @@ export default {
     selectOption(value) {
       this.selectedOption = value;
       this.dropdownOpen = false;
+      this.$emit('operator-change', value);
     }
   }
 }

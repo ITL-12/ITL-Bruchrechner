@@ -1,11 +1,16 @@
 <template>
-  <input type="number">
+  <input type="number" @input="onInput">
 </template>
 
 <script>
 export default {
-  name: "NumInputComponent"
-}
+  name: "NumInputComponent",
+  methods: {
+    onInput(event) {
+      this.$emit('input-change', event.target.value);
+    }
+  }
+};
 </script>
 
 <style scoped>
